@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, Entypo,Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,10 +14,14 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import LiveRadioScreen from '../screens/LiveRadioScreen';
+import ChatRoomScreen from '../screens/ChatRoom';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import LocalMusicScreen from '../screens/LocalScreen';
+import MusicScreen from '../screens/MusicScreen';
+
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -58,16 +62,16 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="LiveRadio"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="LiveRadio"
+        component={LiveRadioScreen}
+        options={({ navigation }: RootTabScreenProps<'LiveRadio'>) => ({
+          title: 'Live Radio',
+          tabBarIcon: ({ color }) => <Ionicons name="radio" size={30} color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -85,23 +89,44 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Music"
+        component={MusicScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Music',
+          tabBarIcon: ({ color }) => <Ionicons name="musical-notes-outline" size={30} color={color} />,
+          
+        }}
+      />
+       <BottomTab.Screen
+        name="LocalMusic"
+        component={LocalMusicScreen}
+        options={{
+          title: 'Local Music',
+          tabBarIcon: ({ color }) => <Feather name="zap" size={30} color={color} />,
+          
+        }}
+      />
+
+<BottomTab.Screen
+        name="ChatRoom"
+        component={ChatRoomScreen}
+        options={{
+          title: 'Chat Room',
+          tabBarIcon: ({ color }) => <Ionicons name="ios-chatbox-ellipses-outline" size={30} color={color} />,
+          
         }}
       />
     </BottomTab.Navigator>
   );
+  
 }
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof Ionicons>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
