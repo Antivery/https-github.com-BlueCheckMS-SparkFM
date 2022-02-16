@@ -35,3 +35,12 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+
+export type Album = {
+  album:{
+    id: string;
+imageUri: string;
+artistHeadline:string;
+}
+}

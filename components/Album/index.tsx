@@ -1,21 +1,22 @@
 import React from 'react';
 import {View, Image, Text} from 'react-native'
-
+import styles from './styles';
 
 
 export type albumProps = {
-    id: string;
+    album:{
+         id: string;
     imageUri: string;
     artistHeadline:string;
+    }
+   
 }
 const Album = (props: albumProps) => (
-    <View>
+    <View style={styles.container}>
         {/* image for the album */}
         {/* Artist Headline */}
-
-        <Image source={{uri: props.imageUri}}/>
-
-
+        <Image style= {styles.image} source={{uri: props.album.imageUri}}/>
+        <Text style={styles.text}>{props.album.artistHeadline}</Text>
     </View>
 )
 
