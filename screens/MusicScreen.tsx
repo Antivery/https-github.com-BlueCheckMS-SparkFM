@@ -3,6 +3,7 @@ import { StyleSheet, Text, View  } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { RootTabScreenProps } from '../types';
 import AlbumCategory from '../components/AlbumCatigory';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const albumCategory= {
   title:'New Music',
@@ -41,27 +42,63 @@ artistHeadline: 'what up doe'
 export default function MusicScreen() {
   return (
     <View style={styles.container}>
+       <View style={styles.sparkLiveContainer}>
+        <View>
+        <Text style={styles.sparkLive}>
+          Playlist
+        </Text>
+        <View style={styles.bar} />
+        </View>
+        <Text style={styles.schedule}>
+          Creators
+        </Text>
+      </View>
+
+
     <AlbumCategory 
     title={albumCategory.title} 
     albums={albumCategory.albums}
     />
+
   </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    marginVertical: 10,
     height: 1,
     width: '80%',
   },
+  sparkLiveContainer:{
+    marginTop:15,
+    marginLeft:15,
+    flexDirection:'row'
+  },
+  sparkLive:{
+   marginRight:20,
+   fontWeight:'800',
+   fontSize:23
+
+  },
+  schedule:{
+    fontWeight:'800',
+    fontSize:23,
+    color: 'lightgray'
+  },
+  bar: {
+    marginVertical: 2,
+    height: 3,
+    width: '80%',
+    backgroundColor:'orange',
+    alignSelf:'flex-start'
+  }
 });

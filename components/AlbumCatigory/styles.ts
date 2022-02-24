@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 container:{
-    margin:4
+    margin:10
 },
 seeAll:{
     textAlign:'right'

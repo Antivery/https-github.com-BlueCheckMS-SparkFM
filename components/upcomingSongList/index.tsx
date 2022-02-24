@@ -23,16 +23,22 @@ const UpComingSongList = (props:upNextPlaylistProp) => (
 <FlatList 
 data={props.songs}
 renderItem={({item}) => (
-    <View>
+    <View style={styles.upcomingSongListWrapper}>
+        <View style={styles.upcomingSongListContainer}> 
         <Image style={styles.songImage} source={{uri:item.imageUri}}/>
-        <View>
-            <Text> {item.songName}</Text>
+        
+            <View style={styles.songInfo}>
+                 <Text> {item.songName}</Text>
             <Text> {item.artistName}</Text>
             <Text> {item.startTime}</Text>
             <Text> {item.songDiscription}</Text>
-        </View>
-        <View style={styles.separator} />
+            </View>
+           
+        
     </View>
+    <View style={styles.separator} />
+    </View>
+    
 )}
 keyExtractor= {( item ) => item.id}
 />
